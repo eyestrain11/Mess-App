@@ -29,11 +29,7 @@ function Navbar() {
       <nav className='navbar'>
         <div className='navbar-container'>
           <Link to='/' className='navbar-logo' onClick={closeMobileMenu}>
-<<<<<<< HEAD
             MessC
-=======
-            TRVL
->>>>>>> f5f92118adad563a4e4012de60c11d34f29c24bc
             <i className='fab fa-typo3' />
           </Link>
           <div className='menu-icon' onClick={handleClick}>

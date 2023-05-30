@@ -6,7 +6,6 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Services from './components/pages/Services';
 import Products from './components/pages/Products';
 import Login from './components/pages/Login';
-import SignUp from './components/pages/SignUp';
 
 function App() {
   return (
