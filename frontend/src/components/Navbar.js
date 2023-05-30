@@ -29,13 +29,8 @@ function Navbar() {
       <nav className='navbar'>
         <div className='navbar-container'>
           <Link to='/' className='navbar-logo' onClick={closeMobileMenu}>
-<<<<<<< HEAD
             MessC
-            <i class='fab fa-typo3' />
-=======
-            TRVL
             <i className='fab fa-typo3' />
->>>>>>> bb9da6d29c07155c41ba5474b1776aa2f1d7bcca
           </Link>
           <div className='menu-icon' onClick={handleClick}>
             <i className={click ? 'fas fa-times' : 'fas fa-bars'} />
