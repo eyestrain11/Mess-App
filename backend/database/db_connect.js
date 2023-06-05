@@ -3,8 +3,7 @@ console.log("Welcome to mongoose");
 import dotenv from 'dotenv'
 
 
-dotenv.config({path:'../config.env'})
-
+dotenv.config()
 
 const Connection = async () => {
   console.log("go to db connect");
