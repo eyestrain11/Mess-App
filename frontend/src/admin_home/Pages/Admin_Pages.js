@@ -7,6 +7,7 @@ import AllUser from '../Components/Alluser';
 import AdminHome from '../Components/Home';
 import Sidebar from '../Components/Sidebar';
 import Mainbar from '../Components/Mainbar';
+import TodayStudent from '../Components/TodayStudent';
 
 function Admin_Pages() {
   const { id } = useParams();
@@ -24,6 +25,7 @@ function Admin_Pages() {
                 case "home": return (<AdminHome />);
                 case "adduser": return (<AddUser /> );
                 case "alluser": return (<AllUser /> );
+                case "todaystudent":return (<TodayStudent/>)
                 default: return "#FFFFFF";
             }
           })()}

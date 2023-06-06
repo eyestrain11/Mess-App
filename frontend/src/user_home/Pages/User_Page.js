@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import Sidebar from "../Components/Sidebar";
 import UserProfile from './UserProfile';
 import UserMenu from './UserMenu';
+import Attendance from './attendance';
 
 function User_Page() {
   const { id } = useParams();
@@ -19,6 +20,7 @@ function User_Page() {
             switch (id) {
                 case "profile": return (<UserProfile></UserProfile>);
                 case "menu": return (<UserMenu></UserMenu>);
+                case "attendance" : return (<Attendance></Attendance>)
                 default: return "#FFFFFF";
             }
           })()}

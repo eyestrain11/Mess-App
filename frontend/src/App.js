@@ -19,6 +19,7 @@ function App() {
           <Route path='/services' exact component={User_Page} />
           <Route path='/products' exact component={Admin_Pages} />
           <Route path='/sign-up' component={Login} />
+          {/* <Route path='/fuck' exact component={Attendance}/> */}
           {/* <Route path='/user/menu' component={UserMenu} /> */}
         </Switch>
       </Router>

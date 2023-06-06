@@ -68,7 +68,7 @@ function Sidebar() {
         >
           <Link
             className="flex  flex-row justify-start pl-1 pr-2 hover:no-underline  outline-none  shadow-soft-xl text-sm  m-auto items-center whitespace-nowrap rounded-lg   font-semibold "
-            to="/admin/attendance"
+            to="/admin/todaystudent"
           >
             <div className="shadow-soft-2xl  mr-2 flex h-[40px] w-[60px] items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-1.5">
               <img src={verified} alt="sdfsd" className="h-[50px] w-[100px]" />
