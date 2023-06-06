@@ -14,10 +14,10 @@
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-router-dom": "^5.3.4",
-    "react-scripts": "3.4.1"
+    "react-scripts": "^5.0.1"
   },
   "scripts": {
-    "start": "react-scripts --openssl-legacy-provider start",
+    "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "node server.js",
     "eject": "react-scripts eject"
@@ -38,6 +38,6 @@
     ]
   },
   "devDependencies": {
-    "tailwindcss": "^3.3.7"
+    "tailwindcss": "^3.3.2"
   }
 }
