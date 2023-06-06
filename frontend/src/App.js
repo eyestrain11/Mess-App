@@ -3,28 +3,23 @@ import Navbar from './components/Navbar';
 import './App.css';
 import Home from './components/pages/Home';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import User from './user_home/User';
 import Login from './components/pages/Login';
-import Menu from './menu/Menu';
-import UserMenu from './menu/UserMenu';
-import Adduser from "./User/Adduser";
-import Alluser from "./User/Alluser";
+import Admin_Pages from './admin_home/Pages/Admin_Pages';
+import User_Page from './user_home/Pages/User_Page';
 
 function App() {
   return (
     <>
       <Router>
         <Navbar />
-        <Switch>
+          <Switch>
           <Route path='/' exact component={Home} />
-          <Route path='/services' component={Menu} />
-          <Route path='/products' component={User}>
-          </Route>
+          <Route path='/admin/:id' exact component={Admin_Pages} />
+          <Route path='/user/:id' exact component={User_Page} />
+          <Route path='/services' exact component={User_Page} />
+          <Route path='/products' exact component={Admin_Pages} />
           <Route path='/sign-up' component={Login} />
-          <Route path='/admin/menu' component={Menu} />
-          <Route path='/user/menu' component={UserMenu} />
-          <Route path='/adduser' component={Adduser} />
-          <Route path='/alluser' component={Alluser} />
+          {/* <Route path='/user/menu' component={UserMenu} /> */}
         </Switch>
       </Router>
     </>
