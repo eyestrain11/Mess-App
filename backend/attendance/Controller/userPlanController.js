@@ -1,10 +1,11 @@
 import UserPlan from "../Modals/userPlan.js";
+import User from "../../User/Models/User.js";
 import bcrypt from "bcrypt";
 import asyncHandler from "express-async-handler";
 import moment from "moment";
 
 export const updateConsent = asyncHandler(async (req, res) => {
-    var { userId, planId, date, breakfast, lunch, dinner } = req.body;
+    var { userId, date, breakfast, lunch, dinner } = req.body;
 
     var date = new Date(date);
     
@@ -12,8 +13,8 @@ export const updateConsent = asyncHandler(async (req, res) => {
     console.log(date);
   
     const updatedObject = { date, breakfast, lunch, dinner };
-    const updateConsent = await UserPlan.updateOne(
-      { userId, planId },
+    const updateConsent = await User.updateOne(
+      { userId },
       {
         $set: {
           "isavailable.$[elemX]": updatedObject,
@@ -35,12 +36,12 @@ export const updateConsent = asyncHandler(async (req, res) => {
     var date = data.date;
     console.log(date);
     var userId = data.userId;
-    var planId = data.planId;
+    // var planId = data.planId;
     date = moment(date).utcOffset("+05:30").startOf("day").toDate();
     console.log(date);
   
-    const getConsent = await UserPlan.findOne(
-      { userId, planId, "isavailable.date": date },
+    const getConsent = await User.findOne(
+      { userId, "isavailable.date": date },
       {
         _id: 0,
         isavailable: { $elemMatch: { date: date } },
@@ -55,7 +56,7 @@ export const updateConsent = asyncHandler(async (req, res) => {
     var today_date = new Date();
     today_date = moment(today_date).utcOffset("+05:30").startOf("day").toDate();
     console.log(today_date);
-    const user = await UserPlan.find(
+    const user = await User.find(
       {
         userId: userId,
         start_date: { $lte: today_date },
@@ -65,9 +66,8 @@ export const updateConsent = asyncHandler(async (req, res) => {
       {
         _id: 0,
         userId: 1,
-        planId: 1,
-        fees: 1,
-        fee_status: 1,
+        // fees: 1,
+        // fee_status: 1,
         isavailable: { $elemMatch: { date: today_date } },
       }
     );
@@ -84,8 +84,14 @@ export const updateConsent = asyncHandler(async (req, res) => {
     const type = req.params.type;
     
     var today_date = new Date();
+
+    console.log(today_date);
     
-    today_date = moment(today_date).utcOffset("+05:30").startOf("day").toDate();
+    today_date = moment(today_date).utcOffset("0").startOf("day").toDate();
+
+    // moment(today_date).format('YYYY-MM-DD');
+
+    
   
     
     var user;
@@ -93,11 +99,11 @@ export const updateConsent = asyncHandler(async (req, res) => {
     console.log(today_date);
     
     if (type === "Breakfast") {
-      user = await UserPlan.aggregate([
+      user = await User.aggregate([
         {
           $match: {
-            start_date: { $lte: today_date },
-            end_date: { $gte: today_date },
+            // start_date: { $lte: today_date },
+            // end_date: { $gte: today_date },
             isavailable: {
               $elemMatch: {
                 date: today_date,
@@ -110,8 +116,8 @@ export const updateConsent = asyncHandler(async (req, res) => {
           $group: {
             _id: "$_id",
             userId: { $first: "$userId" },
-            planId: { $first: "$planId" },
-            fee_status: { $first: "$fee_status" },
+            name: { $first: "$name" },
+            email: { $first: "$email" },
           },
         },
         {
@@ -120,11 +126,11 @@ export const updateConsent = asyncHandler(async (req, res) => {
       ]);
     }
     if (type === "Lunch") {
-      user = await UserPlan.aggregate([
+      user = await User.aggregate([
         {
           $match: {
-            start_date: { $lte: today_date },
-            end_date: { $gte: today_date },
+            // start_date: { $lte: today_date },
+            // end_date: { $gte: today_date },
             isavailable: {
               $elemMatch: {
                 date: today_date,
@@ -137,8 +143,8 @@ export const updateConsent = asyncHandler(async (req, res) => {
           $group: {
             _id: "$_id",
             userId: { $first: "$userId" },
-            planId: { $first: "$planId" },
-            fee_status: { $first: "$fee_status" },
+            name: { $first: "$name" },
+            email: { $first: "$email" },
           },
         },
         {
@@ -147,11 +153,11 @@ export const updateConsent = asyncHandler(async (req, res) => {
       ]);
     }
     if (type === "Dinner") {
-      user = await UserPlan.aggregate([
+      user = await User.aggregate([
         {
           $match: {
-            start_date: { $lte: today_date },
-            end_date: { $gte: today_date },
+            // start_date: { $lte: today_date },
+            // end_date: { $gte: today_date },
             isavailable: {
               $elemMatch: {
                 date: today_date,
@@ -164,8 +170,8 @@ export const updateConsent = asyncHandler(async (req, res) => {
           $group: {
             _id: "$_id",
             userId: { $first: "$userId" },
-            planId: { $first: "$planId" },
-            fee_status: { $first: "$fee_status" },
+            name: { $first: "$name" },
+            email: { $first: "$email" },
           },
         },
         {
@@ -195,10 +201,10 @@ export const updateConsent = asyncHandler(async (req, res) => {
     // const today_date = moment().format()
     // today_date.setDate(today_date.getDate()+1)
     console.log(today_date);
-    const user = await UserPlan.find({
+    const user = await User.find({
       userId: userId,
-      start_date: { $lte: today_date },
-      end_date: { $gte: today_date },
+      // start_date: { $lte: today_date },
+      // end_date: { $gte: today_date },
     });
     // console.log(user);
     if (!user) {

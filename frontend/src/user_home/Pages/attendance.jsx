@@ -75,7 +75,7 @@ const Attendance = () => {
       try {
         // const userId = auth.userId;
         // const userId = 2007;
-        const userId = 2002;
+        const userId = 2001;
         const response = await axios.get(`/dailyentry/getuserentry/${userId}`, {
           withCredentials: true,
         });
@@ -95,7 +95,7 @@ const Attendance = () => {
 
 useEffect(() => {
   const getCurrentPlan = async () => {
-    const userId = 2002;
+    const userId = 2001;
     // const userId = 2007;
 
     try {
@@ -181,7 +181,7 @@ const content = arr.map((item, index) => {
     if (check >= from && check <= to) {
         bg_big = "bg-lime-300";
       } else {
-        bg_big = "bg-black";
+        bg_big = "bg-white";
       }
 
       if (check >= today) {
@@ -356,8 +356,8 @@ const content = arr.map((item, index) => {
             <ConsentModal
               setEditmodal={setConsentModal}
               consentDate={consentDate}
-              userId={2002}
-              planId={502}
+              userId={2001}
+              // planId={502}
             />
           ) : (
             ""

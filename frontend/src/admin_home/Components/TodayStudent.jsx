@@ -56,9 +56,7 @@ const TodayStudent = () => {
 
   const content = users
     .filter((item, i) => {
-      return item.userId.toString().includes(search) ||
-      item.planId.toString().includes(search) ||
-        item.fee_status
+      return item.userId.toString().includes(search)
         ? "paid".includes(search)
         : "none".includes(search);
     })
@@ -70,16 +68,10 @@ const TodayStudent = () => {
             <div className="flex items-center text-black">{user.userId}</div>
           </td>
           <td className="text-black px-6 py-4">
-            <div className="flex items-center text-black">{user.planId}</div>
+            <div className="flex items-center text-black">{user.name}</div>
           </td>
-          <td className="px-6 py-4">
-            <div className="flex items-center text-black">
-              {user.fee_status ? (
-                <div className="w-[2rem] h-[2rem] border rounded-full bg-green-700"></div>
-              ) : (
-                <div className="w-[2rem] h-[2rem] border rounded-full bg-red-700"></div>
-              )}
-            </div>
+          <td className="text-black px-6 py-4">
+            <div className="flex items-center text-black">{user.email}</div>
           </td>
         </tr>
       );
@@ -151,10 +143,10 @@ const TodayStudent = () => {
               UserId
             </th>
             <th scope="col" className="w-[10rem] px-6 py-3">
-              PlanID
+              NAME
             </th>
             <th scope="col" className="w-[10rem] px-6 py-3">
-              Fee Status
+              EMAIL
             </th>
             {/* <th scope="col" className="w-[10rem] px-6 py-3">
               Attendance

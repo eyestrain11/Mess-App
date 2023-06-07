@@ -1,5 +1,6 @@
 import DailyEntry from '../Modals/DailyEntry.js'
 import bcrypt from 'bcrypt'
+import User from '../../User/Models/User.js'
 import asyncHandler from 'express-async-handler'
 
 export const getUserEntryDetail = asyncHandler(async (req , res) => {
@@ -10,7 +11,7 @@ export const getUserEntryDetail = asyncHandler(async (req , res) => {
         return res.status(400).json({ message: 'User ID Required' })
     }
 
-    const entry = await DailyEntry.findOne({"userId":userId})
+    const entry = await User.findOne({"userId":userId})
     
     const start_end = entry.attendance[0].date.getDate()
     
@@ -24,14 +25,14 @@ export const getUserEntryDetail = asyncHandler(async (req , res) => {
 
 
 export const updateDailyEntry = asyncHandler(async (req, res) => {
-    const {userId , verifyThing , planId } = req.body
+    const {userId , verifyThing } = req.body
 
     if(!verifyThing)
     {
         return res.status(400).json({message:"Select type required"})
     }
    
-    const user = await DailyEntry.findOne({"userId":userId}).exec()
+    const user = await User.findOne({"userId":userId}).exec()
 
     if (!user) {
             return res.status(400).json({ message: 'User not found'});
@@ -79,7 +80,7 @@ export const updateDailyEntry = asyncHandler(async (req, res) => {
             return res.status(400).json({message:`Your ${verifyThing} entry is already added`})
         }
 
-        const updateEntry = await DailyEntry.updateOne({"userId":userId } , {
+        const updateEntry = await User.updateOne({"userId":userId } , {
             $set:{
                 "attendance.$[elemX].menu" : updatedObject
             }},
@@ -95,9 +96,9 @@ export const updateDailyEntry = asyncHandler(async (req, res) => {
         
         const today_date = new Date();
         
-        const dailyEntryObject = {"date":today_date,"currPlanId":planId , "menu":updatedObject}
+        const dailyEntryObject = {"date":today_date , "menu":updatedObject}
 
-        const updateEntry = await DailyEntry.updateOne({"userId":userId } , {
+        const updateEntry = await User.updateOne({"userId":userId } , {
             $push:{
                 "attendance":dailyEntryObject
             }},

@@ -1,7 +1,11 @@
 import mongoose from 'mongoose'
 import validator from 'validator';
-// import DailyEntry from './DailyEntry.js';
+import moment from "moment";
 
+// import DailyEntry from './DailyEntry.js';
+var date = new Date();
+var firstDay = new Date(date.getFullYear(), date.getMonth(), 1);
+var lastDay = new Date(date.getFullYear(), date.getMonth() + 1, 0);
 
 const userSchema = new mongoose.Schema({
     userId: {
@@ -23,6 +27,32 @@ const userSchema = new mongoose.Schema({
             }
         }
     },
+
+    isavailable: [
+        {
+          date: {
+            type: Date,
+            
+          },
+  
+          breakfast: {
+            type: Boolean,
+            
+            default: true,
+          },
+          lunch: {
+            type: Boolean,
+            
+            default: true,
+          },
+          dinner: {
+            type: Boolean,
+            
+            default: true,
+          },
+        },
+      ],
+
     mobileno: {
         type: Number,
         required : [true , "Please enter an contact number"],
@@ -54,12 +84,34 @@ userSchema.pre("save", async function (next) {
 
     console.log("Go to pre section");
     var docs = this;
-    // console.log(docs);
+
     const data = await User.find()
-    // console.log(data.length);
+
     docs.userId = docs.userId+data.length;
     
     console.log("Adding : " , docs.userId);
+
+    var arr = getDatesInRange(new Date(firstDay), new Date(lastDay));
+  
+    function getDatesInRange(d1, d2) {
+      const date = new Date(d1);
+      const dates = [];
+      while (date <= d2) {
+        dates.push(new Date(date));
+        date.setDate(date.getDate()+1);
+      }
+      return dates;
+    }
+    arr.map((item) => {
+      const availableObject = {
+        date: moment(item).utcOffset("+05:30").startOf("day").toDate(),
+        breakfast: true,
+        lunch: true,
+        dinner: true,
+      };
+      docs.isavailable.push(availableObject);
+    });
+    
     // const dailyEntryObject = {"userid":docs.userId , "attendance" : } 
     // const today_date = new Date("");
     // if(docs.role===0)
@@ -75,6 +127,49 @@ userSchema.pre("save", async function (next) {
     // }
     next()
   });
+
+//   userSchema.pre("save", async function (next) {
+//     var docs = this;
+  
+//     const data = await UserPlan.find();
+  
+  
+//     docs.subId = docs.subId + data.length;
+   
+//    const today_date = firstDay;
+    
+//    const end_date = lastDay;
+  
+//     var arr = getDatesInRange(new Date(today_date), new Date(end_date));
+  
+//     function getDatesInRange(d1, d2) {
+//       const date = new Date(d1);
+//       const dates = [];
+//       while (date <= d2) {
+//         dates.push(new Date(date));
+//         date.setDate(date.getDate() + 1);
+//       }
+//       return dates;
+//     }
+//     arr.map((item) => {
+//       const availableObject = {
+//         date: moment(item).utcOffset("+05:30").startOf("day").toDate(),
+//         breakfast: true,
+//         lunch: true,
+//         dinner: true,
+//       };
+//       docs.isavailable.push(availableObject);
+//     });
+  
+//     console.log(end_date);
+//     docs.start_date = firstDay;
+//     docs.end_date = lastDay;
+//     docs.remaining_days = Math.round(
+//       moment.duration(moment(end_date).diff(moment(today_date))).asDays()
+//     );
+//     // console.log(docs.planId);
+//     next();
+//   });
 
 
 const User = mongoose.models.newUser || mongoose.model('newUser' , userSchema)

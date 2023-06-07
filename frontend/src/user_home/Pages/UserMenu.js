@@ -61,14 +61,14 @@ const UserMenu = () => {
             <div className="dayselect flex flex-row">
               <label
                 for="countries"
-                class="block mb-2 text-sm min-w-fit m-2  font-medium text-black"
+                className="block mb-2 text-sm min-w-fit m-2  font-medium text-black"
               >
                 {/* Select an option */}
               </label>
               <select
                 id="day"
                 name="menu_day"
-                class="bg-gray-50 w-[20rem] border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 "
+                className="bg-gray-50 w-[20rem] border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 "
                 value={day}
                 onChange={(e) => setDay(e.target.value)}
               >

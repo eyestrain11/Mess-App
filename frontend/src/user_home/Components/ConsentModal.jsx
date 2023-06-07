@@ -27,11 +27,11 @@ useEffect(() => {
     const getData = async (consentDate) => {
       
       console.log(props.userId);
-      console.log(props.planId);
+      // console.log(props.planId);
       console.log(props.consentDate);
       const obj = JSON.stringify({
         userId: props.userId,
-        planId: props.planId,
+        // planId: props.planId,
         date: props.consentDate,
         
       });
@@ -66,7 +66,7 @@ const updateConsent = async () => {
         "/userplan/updateConsent",
         JSON.stringify({
           userId: props.userId,
-          planId: props.planId,
+          // planId: props.planId,
           date: dayjs(date).toDate(),
           breakfast,
           lunch,
