@@ -18,7 +18,7 @@ function Sidebar() {
   const active2 =Location.pathname === "/user/attendance" ? `${activecolor}` : "";
   const active3 = Location.pathname === "/user/subscription" ? `${activecolor}` : "";
   const active4 = Location.pathname === "/user/menu" ? `${activecolor}` : "";
-  const active5 =Location.pathname === "/user/information" ? `${activecolor}` : "";
+  const active5 =Location.pathname === "/user/rules" ? `${activecolor}` : "";
   const active6 =Location.pathname === "/user/profile" ? `${activecolor}` : "";
 
 
@@ -113,7 +113,7 @@ function Sidebar() {
           <li className={`w-[80%]  p-[1.2px]  mt-4 mx-auto py-[0.5rem] ${active5} rounded-xl `}>
             <Link
               className="  flex  flex-row  justify-start pl-1 pr-2  hover:no-underline  outline-none  shadow-soft-xl text-sm  m-auto items-center whitespace-nowrap rounded-lg   font-semibold "
-              to="/user/information"
+              to="/user/rules"
             >
               <div className="shadow-soft-2xl ml-1  mr-2  flex h-[40px] w-[60px] items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-1.5">
                 <img

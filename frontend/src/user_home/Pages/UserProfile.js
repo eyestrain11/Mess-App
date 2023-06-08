@@ -1,9 +1,9 @@
 import React from "react";
-// import useAuth from "../../Auth/useAuth";
+import useAuth from '../../Auth/useAuth';
 import hackerPic from "../../Svg/hacker.png";
 
 const UserProfile = () => {
-//   const { auth } = useAuth();
+  const { auth } = useAuth();
   return (
     <div>
       <section className="text-gray-600 body-font">
@@ -13,21 +13,19 @@ const UserProfile = () => {
           /* ---------------------------------------------------------------------------------------------- */}
           <div className="lg:flex-grow md:w-1/2 lg:pr-24 md:pr-16 flex flex-col md:items-start md:text-left mb-16 md:mb-0 items-center ">
             <h1 className="title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900">
-              {/* {auth.userId} */}
+              {auth.userId}
               <br className="hidden lg:inline-block" />
-              {/* {auth.name} */}
+              {auth.name}
             </h1>
             <span className="mb-4 leading-relaxed">
-              User can see menu and subscription plan added by admin . Also user
-              can give their attendance by using QR code generated on your
-              dashboard. User can track their attendance record in Attendance
-              section date by date.
+              Hello user, with MessC you can make your daily meal choices in the 'Meal Choice' section, can see the weekly 
+              menu in the 'Weekly Menu' section and should follow the rules in the 'Rules' section.
             </span>
             <span className="my-2 bg-blue-300 p-2 w-[15rem] rounded shadow-xl leading-relaxed">
-              {/* Email : {auth.email} */}
+              Email : {auth.email}
             </span>
             <span className="my-2 leading-relaxed w-[15rem] bg-green-300 p-2 rounded shadow-xl ">
-              {/* Mobile No : {auth.mobileno} */}
+              Mobile No : {auth.mobileno}
             </span>
           </div>
 
