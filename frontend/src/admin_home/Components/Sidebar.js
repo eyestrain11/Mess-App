@@ -140,12 +140,12 @@ function Sidebar() {
           </Link>
         </li> */}
 
-        <li className="w-full  mt-8 hidden sm:block">
+        {/* <li className="w-full  mt-8 hidden sm:block">
           <h6 className="ml-2  text-center text-lg  text-black font-bold leading-tight uppercase  opacity-100">
             Account pages
           </h6>
         </li>
-<hr class="bg-black mt-3 hidden sm:block" />
+<hr class="bg-black mt-3 hidden sm:block" /> */}
         <li
           className={`w-[80%]  p-[1.2px]  mt-4 mx-auto py-[0.5rem]  rounded-xl ${active7}`}
         >
@@ -162,7 +162,7 @@ function Sidebar() {
           </Link>
         </li>
 
-        <li className={`w-[80%]  p-[1.2px]  mt-4 mb-2 py-[0.5rem]  rounded-xl`}>
+        {/* <li className={`w-[80%]  p-[1.2px]  mt-4 mb-2 py-[0.5rem]  rounded-xl`}>
           <button
             // onClick={logout}
             className="flex  flex-row justify-start pl-1 pr-2 hover:no-underline  outline-none  shadow-soft-xl text-sm  m-auto items-center whitespace-nowrap rounded-lg   font-semibold "
@@ -174,7 +174,7 @@ function Sidebar() {
               Log Out
             </button>
           </button>
-        </li>
+        </li> */}
       </ul>
     </div>
   );
