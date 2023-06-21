@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import axios , {axiosPrivate} from "../../API/axios";
 // import Alert from "../../Components/Alert";
-// import closeBtnpic from "../../Svg/close.svg";
+import closeBtnpic from "../../Svg/close.svg";
 import dayjs from "dayjs";
 
 
@@ -114,6 +114,7 @@ return (
           </div>
           <div class="flex-[1] pl-10">
             <img
+              src={closeBtnpic}
               alt=""
               className=" cursor-pointer min-h-[35px] min-w-[35px] mt-1"
               onClick={() => props.setEditmodal(false)}

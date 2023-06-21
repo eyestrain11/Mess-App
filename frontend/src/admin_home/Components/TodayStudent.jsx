@@ -65,13 +65,13 @@ const TodayStudent = () => {
       return (
         <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
           <td className="w-4 p-4">
-            <div className="flex items-center text-black">{user.userId}</div>
+            <div className="flex items-center text-white">{user.userId}</div>
           </td>
           <td className="text-black px-6 py-4">
-            <div className="flex items-center text-black">{user.name}</div>
+            <div className="flex items-center text-white">{user.name}</div>
           </td>
           <td className="text-black px-6 py-4">
-            <div className="flex items-center text-black">{user.email}</div>
+            <div className="flex items-center text-white">{user.email}</div>
           </td>
         </tr>
       );
@@ -106,7 +106,7 @@ const TodayStudent = () => {
         <option value="Dinner">Dinner</option>
       </select>
       <div className="flex items-center justify-around  pb-4 bg-white dark:bg-gray-900">
-        <span className="h2">Total Students : {users.length}</span>
+        <span className="h2 flex items-left text-white">Total Students : {users.length}</span>
         <div className="relative">
           <div className="absolute inset-y-2 right-0 px-1  flex items-center pl-3 pointer-events-none">
             <svg
@@ -162,7 +162,7 @@ const TodayStudent = () => {
           aria-label="Pagination"
         >
           <button
-            onClick={() => setPage(page - 1)}
+            onClick={() => {setPage(page - 1); setstartingindex((page - 1) * row)}}
             className="relative inline-flex items-center rounded-l-md px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0"
           >
             <span className="sr-only">Previous</span>
@@ -182,7 +182,7 @@ const TodayStudent = () => {
           {pagesArray}
 
           <button
-            onClick={() => setPage(page + 1)}
+            onClick={() => {setPage(page + 1); setstartingindex((page + 1) * row)}}
             className="relative inline-flex items-center rounded-r-md px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0"
           >
             <span className="sr-only">Next</span>

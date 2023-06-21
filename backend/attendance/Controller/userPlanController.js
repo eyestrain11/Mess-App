@@ -104,12 +104,14 @@ export const updateConsent = asyncHandler(async (req, res) => {
           $match: {
             // start_date: { $lte: today_date },
             // end_date: { $gte: today_date },
-            isavailable: {
+            $and : [
+            {role: 0},
+            {isavailable: {
               $elemMatch: {
                 date: today_date,
                 breakfast: true,
               },
-            },
+            }}]
           },
         },
         {
@@ -131,12 +133,14 @@ export const updateConsent = asyncHandler(async (req, res) => {
           $match: {
             // start_date: { $lte: today_date },
             // end_date: { $gte: today_date },
-            isavailable: {
-              $elemMatch: {
-                date: today_date,
-                lunch: true,
-              },
-            },
+            $and : [
+              {role: 0},
+              {isavailable: {
+                $elemMatch: {
+                  date: today_date,
+                  breakfast: true,
+                },
+              }}]
           },
         },
         {
@@ -158,12 +162,14 @@ export const updateConsent = asyncHandler(async (req, res) => {
           $match: {
             // start_date: { $lte: today_date },
             // end_date: { $gte: today_date },
-            isavailable: {
-              $elemMatch: {
-                date: today_date,
-                dinner: true,
-              },
-            },
+            $and : [
+              {role: 0},
+              {isavailable: {
+                $elemMatch: {
+                  date: today_date,
+                  breakfast: true,
+                },
+              }}]
           },
         },
         {
