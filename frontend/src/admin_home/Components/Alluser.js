@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "../../API/axios";
 // import Alert from "./Components/Alert";
+import { axiosPrivate } from "../../API/axios";
 import EditModal from "./EditModal";
 
 function Alluser() {
@@ -12,14 +13,15 @@ function Alluser() {
   const row = 5;
   const totalpages = Math.ceil(users.length / row);
   const [startingindex, setstartingindex] = useState(0);
+  const [deleted, setDeleted] = useState(false);
 
   // const {
   //     isLoading,
   //     isError,
   //     error,
-  //     data: users,
+  //     // data: users,
   //     isFetching,
-  //     isPreviousData,
+  //     // isPreviousData,
   // } = useQuery(['/users', page], () => getUsersPage(page), {
   //     keepPreviousData: true
   // })
@@ -41,21 +43,24 @@ function Alluser() {
     };
 
     getData();
-  }, [editModal]);
+  }, [editModal, deleted]);
 
   const handleDelete = async (email) => {
     try {
       console.log(email);
-      const response = await axios.delete(
+      console.log(document.cookie);
+      const response = await axiosPrivate.delete(
         `users/delete/${email}`,
         JSON.stringify({ email }),
         {
-          headers: { "Content-Type": "application/json" },
+          headers: { "Content-Type": "application/json", Cookie: 'cookie1=value; cookie2=value; cookie3=value;'},
           withCredentials: true,
         }
       );
       console.log(response);
+      setDeleted(!deleted);
     } catch (error) {
+      console.log(error);
       if (!error?.response) {
         console.log("No Server Response");
       } else {
@@ -70,6 +75,7 @@ function Alluser() {
     setEditModal(true);
   };
 
+
   const content = users
     .filter((item, i) => {
       return (
@@ -81,6 +87,7 @@ function Alluser() {
     .slice(startingindex, startingindex + row)
     .map((user) => {
       return (
+        
         <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
           <td className="w-4 p-4">
             <div className="flex items-center justify-center text-white">
@@ -255,7 +262,7 @@ function Alluser() {
           aria-label="Pagination"
         >
           <button
-            onClick={() => setPage(page - 1)}
+            onClick={() => {setPage(page - 1); setstartingindex((page - 1) * row)}}
             className="relative inline-flex items-center rounded-l-md px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0"
           >
             <span className="sr-only">Previous</span>
@@ -276,7 +283,7 @@ function Alluser() {
           {/* Current: "z-10 bg-indigo-600 text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600", Default: "text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:outline-offset-0" */}
 
           <button
-            onClick={() => setPage(page + 1)}
+            onClick={() => {setPage(page + 1); setstartingindex((page + 1) * row)}}
             className="relative inline-flex items-center rounded-r-md px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0"
           >
             <span className="sr-only">Next</span>

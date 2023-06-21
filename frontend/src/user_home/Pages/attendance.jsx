@@ -73,9 +73,9 @@ const Attendance = () => {
   useEffect(() => {
     const getData = async (e) => {
       try {
-        // const userId = auth.userId;
+        const userId = auth.userId;
         // const userId = 2007;
-        const userId = 2001;
+        // const userId = 2001;
         const response = await axios.get(`/dailyentry/getuserentry/${userId}`, {
           withCredentials: true,
         });
@@ -95,8 +95,9 @@ const Attendance = () => {
 
 useEffect(() => {
   const getCurrentPlan = async () => {
-    const userId = 2001;
+    // const userId = 2001;
     // const userId = 2007;
+    const userId = auth.userId;
 
     try {
       const planResponse = await axios.get(
@@ -106,7 +107,7 @@ useEffect(() => {
         }
       );
 
-      var date = new Date();
+ var date = new Date();
 var firstDay = new Date(date.getFullYear(), date.getMonth(), 1);
 var lastDay = new Date(date.getFullYear(), date.getMonth() + 1, 0);
 
@@ -184,7 +185,7 @@ const content = arr.map((item, index) => {
         bg_big = "bg-white";
       }
 
-      if (check >= today) {
+      if (check > today) {
         consent = true;
       } else {
         consent = false;
@@ -336,6 +337,7 @@ const content = arr.map((item, index) => {
       };
 
       const monthname = [
+        "December",
         "January",
         "February",
         "March",
@@ -347,7 +349,7 @@ const content = arr.map((item, index) => {
         "September",
         "October",
         "November",
-        "December",
+        
       ];
 
       return (
@@ -356,7 +358,7 @@ const content = arr.map((item, index) => {
             <ConsentModal
               setEditmodal={setConsentModal}
               consentDate={consentDate}
-              userId={2001}
+              userId={auth.userId}
               // planId={502}
             />
           ) : (

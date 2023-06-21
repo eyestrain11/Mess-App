@@ -5,8 +5,8 @@ import { Link } from 'react-router-dom';
 
 function Footer() {
   return (
-    <div className='footer-container'>
-      <section className='footer-subscription'>
+    <div className='footer-container' style ={{ paddingTop: "0px", height: "80px"}}>
+      {/* <section className='footer-subscription'>
         <p className='footer-subscription-heading'>
           Join the Adventure newsletter to receive our best vacation deals
         </p>
@@ -24,8 +24,8 @@ function Footer() {
             <Login_Button buttonStyle='btn--outline'>Subscribe</Login_Button>
           </form>
         </div>
-      </section>
-      <div className='footer-links'>
+      </section> */}
+      {/* <div className='footer-links'>
         <div className='footer-link-wrapper'>
           <div className='footer-link-items'>
             <h2>About Us</h2>
@@ -59,16 +59,16 @@ function Footer() {
             <Link to='/'>Twitter</Link>
           </div>
         </div>
-      </div>
+      </div> */}
       <section className='social-media'>
         <div className='social-media-wrap'>
           <div className='footer-logo'>
             <Link to='/' className='social-logo'>
-              TRVL
+              MessC
               <i className='fab fa-typo3' />
             </Link>
           </div>
-          <small className='website-rights'>TRVL © 2020</small>
+          <small className='website-rights'>MessC © 2023</small>
           <div className='social-icons'>
             <Link
               className='social-icon-link facebook'

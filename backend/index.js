@@ -7,7 +7,7 @@ import cors from 'cors';
 import bodyParser from 'body-parser';
 import { corsOptions } from './menu/config/corsOptions.js';
 import userplanRoute from './attendance/Routes/userPlanRoutes.js';
-import dailyentryRouter from './attendance/Routes/dailyentryRoute.js';
+// import dailyentryRouter from './attendance/Routes/dailyentryRoute.js';
 import authrouter from './auth/AuthRoute.js';
 import cookieParser from 'cookie-parser';
 import { protect } from './auth/AuthMiddleware.js';
@@ -24,7 +24,7 @@ app.use(cookieParser());
 
 app.use("/menu", protect, menuRouter);
 app.use("/users", protect, userRoute)
-app.use("/dailyentry", protect, dailyentryRouter);
+// app.use("/dailyentry", protect, dailyentryRouter);
 app.use("/userplan", protect, userplanRoute);
 app.use("/auth", authrouter);
 
